@@ -1,9 +1,9 @@
 """
 Programa parasyta Evelinos Monastyrskos
 """
-
 from Studentas import Studentas
 from Destytojas import Destytojas
+
 class Fakultetas:
     """Universiteto fakultetu klase, kuri pasako fakulteto pavadinima ir adresa"""
     def __init__(self, pavadinimas, adresas):
@@ -65,3 +65,32 @@ class Fakultetas:
     def gauti_destytoja(self):
         vardas = input("Iveskite ieskomo destytojo varda: ")
         return self.destytojai[vardas]
+    def ivesti_numeri(self, fakultetas):
+        """Grazina norima metoda"""
+        def print_menu():       # Your menu design here
+            print(30 * "-", "MENU", 30 * "-")
+            print("1. Prideda studenta ")
+            print("2. Prideda destytoja ")
+            print("3. Pasalina studenta ")
+            print("4. Pasalina destytoja ")
+            print("5. Spausdinti studentus")
+            print("6. Spausdinti destytojus")
+            print(73 * "-")
+        ciklas = 1
+        while ciklas == 1:
+            print_menu()
+            pasirinkimas = input("Iveskite skaiciu [1-6]: ")
+            if pasirinkimas == '1':
+                print (fakultetas.priimti_studenta())
+            elif pasirinkimas == '2':
+                print (fakultetas.priimti_destytoja())
+            elif pasirinkimas == '3':
+                print (fakultetas.istrinti_studenta())
+            elif pasirinkimas == '4':
+                print (fakultetas.istrinti_destytojus())
+            elif pasirinkimas == '5':
+                print (fakultetas.spausdinti_studentus())
+            elif pasirinkimas == '6':
+                print (fakultetas.spausdinti_destytojus())
+            else:
+                ciklas = 2
