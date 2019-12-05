@@ -16,38 +16,7 @@ class Pagrindinis_langas(QWidget):
         self.formaLabel.setText("Registracijos forma")
         self.formaLabel.move(100, 0)
 
-        if self.comboBox() == 0:
-            pass
-        elif self.comboBox() == 1:
-            self.comboBox().activated[str].connect(self.onChanged)
-
-        else:
-            self.nameLabel = QLabel(self)
-            self.nameLabel.setText('Name:')
-            self.line = QLineEdit(self)
-
-            self.line.move(80, 100)
-            self.line.resize(200, 32)
-            self.nameLabel.move(20, 100)
-
-            vardas = QLabel('Vardas')
-            pavarde = QLabel('Pavarde')
-
-            vardasEdit = QLineEdit()
-            pavardeEdit = QLineEdit()
-
-            grid = QGridLayout()
-            grid.setSpacing(10)
-
-            grid.addWidget(vardas, 1, 0)
-            grid.addWidget(vardasEdit, 1, 1)
-
-            grid.addWidget(pavarde, 2, 0)
-            grid.addWidget(pavardeEdit, 2, 1, 1, 1)
-
-            self.setLayout(grid)
-
-
+        self.comboBox()
 
         self.setGeometry(300, 300, 300, 300)
         self.setWindowTitle('Fakultetas')
@@ -60,25 +29,27 @@ class Pagrindinis_langas(QWidget):
         combo.addItem("Destytojai")
         combo.move(97, 40)
 
-        #self.qlabel = QLabel(self)
-        #self.qlabel.move(10, 70)
+        self.qlabel = QLabel(self)
+        self.qlabel.move(10, 70)
 
 
         combo.activated[str].connect(self.onChanged)
-        index = combo.currentIndex()
-        return index
 
     def onChanged(self):
-        self.qlabel.setText("Studiju programa")
-        self.qlabel.adjustSize()
-        self.qline = QLineEdit(self)
-        self.qline.move(100, 70)
-        #self.qline.setText("labas")
-        #self.qline.adjustSize()
+        if self.comboBox().currentIndex() == 0:
+            pass
+        elif self.comboBox().currentIndex() == 1:
+            self.qlabel.setText("Studiju programa")
+            self.qlabel.adjustSize()
+        else:
+            self.qlabel.setText("Pareiga")
+            self.qlabel.adjustSize()
 
-    def onChanged1(self):
-        self.qlabel.setText("Pareiga")
-        self.qlabel.adjustSize()
+
+            #self.qline = QLineEdit(self)
+            #self.qline.move(100, 70)
+            #self.qline.setText("labas")
+            #self.qline.adjustSize()
 
     def closeEvent(self, event):
 
