@@ -1,6 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget, QVBoxLayout, \
-    QMessageBox, QLabel, QLineEdit
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget, QGridLayout, \
+    QMessageBox, QLabel, QLineEdit, QGroupBox
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 
@@ -12,7 +12,7 @@ class Pagrindinis_langas(QMainWindow):
         self.left = 0
         self.top = 0
         self.width = 300
-        self.height = 200
+        self.height = 300
         self.setGeometry(self.left, self.top, self.width, self.height)
         self.table_widget = MyTableWidget(self)
         self.setCentralWidget(self.table_widget)
@@ -22,7 +22,10 @@ class MyTableWidget(QWidget):
 
     def __init__(self, parent):
         super(QWidget, self).__init__(parent)
-        self.layout = QVBoxLayout(self)
+        self.horizontalGroupBox = QGroupBox("Grid")
+        self.layout = QGridLayout(self)
+        self.setLayout(self.layout)
+
 
         # Initialize tab screen
         self.tabs = QTabWidget()
@@ -34,28 +37,43 @@ class MyTableWidget(QWidget):
         self.tabs.addTab(self.tab1, "Studentai")
         self.tabs.addTab(self.tab2, "Destytojai")
 
+        self.layout.setColumnStretch(1, 4)
+        self.layout.setColumnStretch(2, 4)
+
         # Create first tab
-        self.tab1.layout = QVBoxLayout(self)
+        self.tab1.layout = QGridLayout(self)
         self.vardasLabel = QLabel(self)
         self.vardasLabel.setText("Vardas")
-        self.vardasLabel.move(10, 70)
         self.pavardeLabel = QLabel(self)
         self.pavardeLabel.setText("Pavarde")
-        self.pavardeLabel.move(10, 100)
+        self.studiju_programa_Label = QLabel(self)
+        self.studiju_programa_Label.setText("Studiju programa")
+        self.kursasLabel = QLabel(self)
+        self.kursasLabel.setText("Kursas")
         self.vardasLine = QLineEdit(self)
-        self.vardasLine.move(100, 70)
         self.vardasLine.adjustSize()
-        self.tab1.layout.addWidget(self.vardasLabel)
-        self.tab1.layout.addWidget(self.pavardeLabel)
-        self.tab1.layout.addWidget(self.vardasLine)
+        self.pavardeLine = QLineEdit(self)
+        self.pavardeLine.adjustSize()
+        self.studiju_programa_Line = QLineEdit(self)
+        self.studiju_programa_Line.adjustSize()
+        self.kursasLine = QLineEdit(self)
+        self.kursasLine.adjustSize()
+        self.tab1.layout.addWidget(self.vardasLabel, 0, 0)
+        self.tab1.layout.addWidget(self.pavardeLabel, 1, 0)
+        self.tab1.layout.addWidget(self.studiju_programa_Label, 2, 0)
+        self.tab1.layout.addWidget(self.kursasLabel, 3, 0)
+        self.tab1.layout.addWidget(self.vardasLine, 0, 1)
+        self.tab1.layout.addWidget(self.pavardeLine, 1, 1)
+        self.tab1.layout.addWidget(self.studiju_programa_Line, 2, 1)
+        self.tab1.layout.addWidget(self.kursasLine, 3, 1)
         self.tab1.setLayout(self.tab1.layout)
 
         # Add tabs to widget
         self.layout.addWidget(self.tabs)
-        self.setLayout(self.layout)
 
         self.setWindowTitle('Fakultetas')
         self.show()
+
 
     @pyqtSlot()
     def on_click(self):
