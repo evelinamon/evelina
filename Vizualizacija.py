@@ -22,10 +22,8 @@ class MyTableWidget(QWidget):
 
     def __init__(self, parent):
         super(QWidget, self).__init__(parent)
-        self.horizontalGroupBox = QGroupBox("Grid")
         self.layout = QGridLayout(self)
         self.setLayout(self.layout)
-
 
         # Initialize tab screen
         self.tabs = QTabWidget()
@@ -37,11 +35,10 @@ class MyTableWidget(QWidget):
         self.tabs.addTab(self.tab1, "Studentai")
         self.tabs.addTab(self.tab2, "Destytojai")
 
-        self.layout.setColumnStretch(1, 4)
-        self.layout.setColumnStretch(2, 4)
+        self.createGridLayout()
 
-        # Create first tab
         self.tab1.layout = QGridLayout(self)
+        self.tab2.layout = QGridLayout(self)
         self.vardasLabel = QLabel(self)
         self.vardasLabel.setText("Vardas")
         self.pavardeLabel = QLabel(self)
@@ -68,12 +65,48 @@ class MyTableWidget(QWidget):
         self.tab1.layout.addWidget(self.kursasLine, 3, 1)
         self.tab1.setLayout(self.tab1.layout)
 
+        self.vardasLabel = QLabel(self)
+        self.vardasLabel.setText("Vardas")
+        self.pavardeLabel = QLabel(self)
+        self.pavardeLabel.setText("Pavarde")
+        self.vardasLine = QLineEdit(self)
+        self.vardasLine.adjustSize()
+        self.pavardeLine = QLineEdit(self)
+        self.pavardeLine.adjustSize()
+        self.pareigaLabel = QLabel(self)
+        self.pareigaLabel.setText("Pareiga")
+        self.pareigaLine = QLineEdit(self)
+        self.pareigaLine.adjustSize()
+        self.tab2.layout.addWidget(self.vardasLabel, 0, 0)
+        self.tab2.layout.addWidget(self.pavardeLabel, 1, 0)
+        self.tab2.layout.addWidget(self.pareigaLabel, 2, 0)
+        self.tab2.layout.addWidget(self.vardasLine, 0, 1)
+        self.tab2.layout.addWidget(self.pavardeLine, 1, 1)
+        self.tab2.layout.addWidget(self.pareigaLine, 2, 1)
+        self.tab2.setLayout(self.tab2.layout)
+
+        self.pybutton = QPushButton('OK', self)
+        self.pybutton.clicked.connect(self.clickMethod)
+        self.tab1.layout.addWidget(self.pybutton, 4, 0)
+
         # Add tabs to widget
         self.layout.addWidget(self.tabs)
 
         self.setWindowTitle('Fakultetas')
         self.show()
 
+    def clickMethod(self):
+        self.vardasLineValue = self.vardasLine.text()
+        QMessageBox.question(self, 'Message - pythonspot.com', "You typed: " + self.vardasLineValue, QMessageBox.Ok,
+                             QMessageBox.Ok)
+        self.vardasLine.setText("")
+
+    def createGridLayout(self):
+        self.horizontalGroupBox = QGroupBox("Grid")
+        layout = QGridLayout()
+        layout.setColumnStretch(1, 4)
+        layout.setColumnStretch(2, 4)
+        self.horizontalGroupBox.setLayout(layout)
 
     @pyqtSlot()
     def on_click(self):
