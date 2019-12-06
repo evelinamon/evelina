@@ -31,64 +31,17 @@ class MyTableWidget(QDialog):
         self.tabs.addTab(self.tab1, "Studentai")
         self.tabs.addTab(self.tab2, "Destytojai")
 
-        self.createGridLayout()
-
-
+        self.createGridLayout1()
         self.tab1Layout = QVBoxLayout()
         self.tab1Layout.addWidget(self.horizontalGroupBox)
         self.setLayout(self.tab1Layout)
 
+        self.createGridLayout2()
+        self.tab2Layout = QVBoxLayout()
+        self.tab2Layout.addWidget(self.horizontalGroupBox)
+        self.setLayout(self.tab2Layout)
 
 
-
-        self.tab2.layout = QGridLayout(self)
-        """
-        self.vardasLabel = QLabel(self)
-        self.vardasLabel.setText("Vardas")
-        self.pavardeLabel = QLabel(self)
-        self.pavardeLabel.setText("Pavarde")
-        self.studiju_programa_Label = QLabel(self)
-        self.studiju_programa_Label.setText("Studiju programa")
-        self.kursasLabel = QLabel(self)
-        self.kursasLabel.setText("Kursas")
-        self.vardasLine = QLineEdit(self)
-        self.vardasLine.adjustSize()
-        self.pavardeLine = QLineEdit(self)
-        self.pavardeLine.adjustSize()
-        self.studiju_programa_Line = QLineEdit(self)
-        self.studiju_programa_Line.adjustSize()
-        self.kursasLine = QLineEdit(self)
-        self.kursasLine.adjustSize()
-        self.tab1.layout.addWidget(self.vardasLabel, 0, 0)
-        self.tab1.layout.addWidget(self.pavardeLabel, 1, 0)
-        self.tab1.layout.addWidget(self.studiju_programa_Label, 2, 0)
-        self.tab1.layout.addWidget(self.kursasLabel, 3, 0)
-        self.tab1.layout.addWidget(self.vardasLine, 0, 1)
-        self.tab1.layout.addWidget(self.pavardeLine, 1, 1)
-        self.tab1.layout.addWidget(self.studiju_programa_Line, 2, 1)
-        self.tab1.layout.addWidget(self.kursasLine, 3, 1)
-        """
-        #self.tab1.setLayout(self.tab1.layout)
-
-        self.vardasLabel = QLabel(self)
-        self.vardasLabel.setText("Vardas")
-        self.pavardeLabel = QLabel(self)
-        self.pavardeLabel.setText("Pavarde")
-        self.vardasLine = QLineEdit(self)
-        self.vardasLine.adjustSize()
-        self.pavardeLine = QLineEdit(self)
-        self.pavardeLine.adjustSize()
-        self.pareigaLabel = QLabel(self)
-        self.pareigaLabel.setText("Pareiga")
-        self.pareigaLine = QLineEdit(self)
-        self.pareigaLine.adjustSize()
-        self.tab2.layout.addWidget(self.vardasLabel, 0, 0)
-        self.tab2.layout.addWidget(self.pavardeLabel, 1, 0)
-        self.tab2.layout.addWidget(self.pareigaLabel, 2, 0)
-        self.tab2.layout.addWidget(self.vardasLine, 0, 1)
-        self.tab2.layout.addWidget(self.pavardeLine, 1, 1)
-        self.tab2.layout.addWidget(self.pareigaLine, 2, 1)
-        self.tab2.setLayout(self.tab2.layout)
 
         #self.pybutton = QPushButton('Įrašyti studentą', self)
         #self.pybutton.clicked.connect(self.clickMethod)
@@ -103,7 +56,7 @@ class MyTableWidget(QDialog):
                              QMessageBox.Ok)
         self.vardasLine.setText("")
 
-    def createGridLayout(self):
+    def createGridLayout1(self):
         self.horizontalGroupBox = QGroupBox("")
         layout = QGridLayout()
         layout.setColumnStretch(0, 1)
@@ -135,6 +88,35 @@ class MyTableWidget(QDialog):
         layout.addWidget(self.kursasLine, 3, 1)
 
         self.horizontalGroupBox.setLayout(layout)
+
+
+    def createGridLayout2(self):
+        self.horizontalGroupBox = QGroupBox("")
+        layout = QGridLayout()
+        layout.setColumnStretch(0, 1)
+        layout.setColumnStretch(1, 2)
+
+        self.vardasLabel = QLabel(self)
+        self.vardasLabel.setText("Vardas")
+        self.pavardeLabel = QLabel(self)
+        self.pavardeLabel.setText("Pavarde")
+        self.vardasLine = QLineEdit(self)
+        self.vardasLine.adjustSize()
+        self.pavardeLine = QLineEdit(self)
+        self.pavardeLine.adjustSize()
+        self.pareigaLabel = QLabel(self)
+        self.pareigaLabel.setText("Pareiga")
+        self.pareigaLine = QLineEdit(self)
+        self.pareigaLine.adjustSize()
+        layout.addWidget(self.vardasLabel, 0, 0)
+        layout.addWidget(self.pavardeLabel, 1, 0)
+        layout.addWidget(self.pareigaLabel, 2, 0)
+        layout.addWidget(self.vardasLine, 0, 1)
+        layout.addWidget(self.pavardeLine, 1, 1)
+        layout.addWidget(self.pareigaLine, 2, 1)
+
+        self.horizontalGroupBox.setLayout(layout)
+
 
     @pyqtSlot()
     def on_click(self):
