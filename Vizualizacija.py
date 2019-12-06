@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget, QGridLayout, \
-    QMessageBox, QLabel, QLineEdit, QGroupBox
+    QMessageBox, QLabel, QLineEdit, QGroupBox, QDialog
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 
@@ -16,26 +16,25 @@ class Pagrindinis_langas(QMainWindow):
         self.setGeometry(self.left, self.top, self.width, self.height)
         self.table_widget = MyTableWidget(self)
         self.setCentralWidget(self.table_widget)
-        self.show()
 
-class MyTableWidget(QWidget):
+class MyTableWidget(QDialog):
 
     def __init__(self, parent):
         super(QWidget, self).__init__(parent)
-        self.layout = QGridLayout(self)
-        self.setLayout(self.layout)
-
         # Initialize tab screen
         self.tabs = QTabWidget()
         self.tab1 = QWidget()
         self.tab2 = QWidget()
-        self.tabs.resize(300, 200)
+        #self.tabs.resize(300, 300)
 
         # Add tabs
         self.tabs.addTab(self.tab1, "Studentai")
         self.tabs.addTab(self.tab2, "Destytojai")
 
         self.createGridLayout()
+        self.layout = QGridLayout(self)
+        self.setLayout(self.layout)
+        self.layout.addWidget(self.tabs)
 
         self.tab1.layout = QGridLayout(self)
         self.tab2.layout = QGridLayout(self)
@@ -85,7 +84,7 @@ class MyTableWidget(QWidget):
         self.tab2.layout.addWidget(self.pareigaLine, 2, 1)
         self.tab2.setLayout(self.tab2.layout)
 
-        self.pybutton = QPushButton('OK', self)
+        self.pybutton = QPushButton('Įrašyti studentą', self)
         self.pybutton.clicked.connect(self.clickMethod)
         self.tab1.layout.addWidget(self.pybutton, 4, 0)
 
@@ -97,15 +96,15 @@ class MyTableWidget(QWidget):
 
     def clickMethod(self):
         self.vardasLineValue = self.vardasLine.text()
-        QMessageBox.question(self, 'Message - pythonspot.com', "You typed: " + self.vardasLineValue, QMessageBox.Ok,
+        QMessageBox.question(self, 'Studentas', "You typed: " + self.vardasLineValue, QMessageBox.Ok,
                              QMessageBox.Ok)
         self.vardasLine.setText("")
 
     def createGridLayout(self):
-        self.horizontalGroupBox = QGroupBox("Grid")
+        self.horizontalGroupBox = QGroupBox("")
         layout = QGridLayout()
-        layout.setColumnStretch(1, 4)
-        layout.setColumnStretch(2, 4)
+        layout.setColumnStretch(0, 1)
+        layout.setColumnStretch(1, 2)
         self.horizontalGroupBox.setLayout(layout)
 
     @pyqtSlot()
