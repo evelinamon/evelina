@@ -32,16 +32,19 @@ class MyTableWidget(QDialog):
         self.tabs.addTab(self.tab2, "Destytojai")
 
         self.createGridLayout1()
-        self.tab1Layout = QVBoxLayout()
-        self.tab1Layout.addWidget(self.horizontalGroupBox)
-        self.setLayout(self.tab1Layout)
+        self.tab1.layout = QVBoxLayout()
+        self.tab1.layout.addWidget(self.horizontalGroupBox)
+        self.setLayout(self.tab1.layout)
 
         self.createGridLayout2()
-        self.tab2Layout = QVBoxLayout()
-        self.tab2Layout.addWidget(self.horizontalGroupBox)
-        self.setLayout(self.tab2Layout)
+        self.tab2.layout = QVBoxLayout()
+        self.tab2.layout.addWidget(self.horizontalGroupBox)
+        self.setLayout(self.tab2.layout)
 
-
+        self.window = QVBoxLayout()
+        self.window.addWidget(self.tab1)
+        self.window.addWidget(self.tab2)
+        self.setLayout(self.window)
 
         #self.pybutton = QPushButton('Įrašyti studentą', self)
         #self.pybutton.clicked.connect(self.clickMethod)
