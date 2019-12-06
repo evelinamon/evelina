@@ -1,97 +1,37 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget, QGridLayout, \
-    QMessageBox, QLabel, QLineEdit, QGroupBox, QDialog, QVBoxLayout
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtWidgets import QApplication, QWidget,  QTabWidget, QGridLayout, \
+    QMessageBox, QLabel, QLineEdit, QGroupBox, QVBoxLayout
 
-
-class Pagrindinis_langas(QMainWindow):
+class Pagrindinis_langas(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.left = 0
-        self.top = 0
-        self.width = 300
-        self.height = 300
-        self.setGeometry(self.left, self.top, self.width, self.height)
-        self.table_widget = MyTableWidget(self)
-        self.setCentralWidget(self.table_widget)
+        layout = QVBoxLayout()
+        tabs = QTabWidget()
+        tabs.addTab(self.createStudentTab(), "Studentas")
+        layout.addWidget(tabs)
+        self.setLayout(layout)
 
-class MyTableWidget(QDialog):
-
-    def __init__(self, parent):
-        super(QWidget, self).__init__(parent)
-        # Initialize tab screen
-        self.tabs = QTabWidget()
-        self.tab1 = QWidget()
-        self.tab2 = QWidget()
-        #self.tabs.resize(300, 300)
-
-        # Add tabs
-        self.tabs.addTab(self.tab1, "Studentai")
-        self.tabs.addTab(self.tab2, "Destytojai")
-
-        self.createGridLayout1()
-        self.tab1.layout = QVBoxLayout()
-        self.tab1.layout.addWidget(self.horizontalGroupBox)
-        self.setLayout(self.tab1.layout)
-
-        self.createGridLayout2()
-        self.tab2.layout = QVBoxLayout()
-        self.tab2.layout.addWidget(self.horizontalGroupBox)
-        self.setLayout(self.tab2.layout)
-
-        self.window = QVBoxLayout()
-        self.window.addWidget(self.tab1)
-        self.window.addWidget(self.tab2)
-        self.setLayout(self.window)
-
-        #self.pybutton = QPushButton('Įrašyti studentą', self)
-        #self.pybutton.clicked.connect(self.clickMethod)
-        #self.tab1.layout.addWidget(self.pybutton, 4, 0)
-
-        self.setWindowTitle('Fakultetas')
         self.show()
 
-    def clickMethod(self):
-        self.vardasLineValue = self.vardasLine.text()
-        QMessageBox.question(self, 'Studentas', "You typed: " + self.vardasLineValue, QMessageBox.Ok,
-                             QMessageBox.Ok)
-        self.vardasLine.setText("")
+    def createStudentTab(self):
+        horizontalGroupBox = QGroupBox()
+        groupBoxLayout = QGridLayout()
+        groupBoxLayout.setColumnStretch(0, 1)
+        groupBoxLayout.setColumnStretch(1, 2)
 
-    def createGridLayout1(self):
-        self.horizontalGroupBox = QGroupBox("")
-        layout = QGridLayout()
-        layout.setColumnStretch(0, 1)
-        layout.setColumnStretch(1, 2)
+        groupBoxLayout.addWidget(QLabel("Vardas"), 0, 0)
+        groupBoxLayout.addWidget(QLabel("Pavarde"), 1, 0)
+        groupBoxLayout.addWidget(QLabel("Studiju programa"), 2, 0)
+        groupBoxLayout.addWidget(QLabel("Kursas"), 3, 0)
+        groupBoxLayout.addWidget(QLineEdit(), 0, 1)
+        groupBoxLayout.addWidget(QLineEdit(), 1, 1)
+        groupBoxLayout.addWidget(QLineEdit(), 2, 1)
+        groupBoxLayout.addWidget(QLineEdit(), 3, 1)
 
-        self.vardasLabel = QLabel(self)
-        self.vardasLabel.setText("Vardas")
-        self.pavardeLabel = QLabel(self)
-        self.pavardeLabel.setText("Pavarde")
-        self.studiju_programa_Label = QLabel(self)
-        self.studiju_programa_Label.setText("Studiju programa")
-        self.kursasLabel = QLabel(self)
-        self.kursasLabel.setText("Kursas")
-        self.vardasLine = QLineEdit(self)
-        self.vardasLine.adjustSize()
-        self.pavardeLine = QLineEdit(self)
-        self.pavardeLine.adjustSize()
-        self.studiju_programa_Line = QLineEdit(self)
-        self.studiju_programa_Line.adjustSize()
-        self.kursasLine = QLineEdit(self)
-        self.kursasLine.adjustSize()
-        layout.addWidget(self.vardasLabel, 0, 0)
-        layout.addWidget(self.pavardeLabel, 1, 0)
-        layout.addWidget(self.studiju_programa_Label, 2, 0)
-        layout.addWidget(self.kursasLabel, 3, 0)
-        layout.addWidget(self.vardasLine, 0, 1)
-        layout.addWidget(self.pavardeLine, 1, 1)
-        layout.addWidget(self.studiju_programa_Line, 2, 1)
-        layout.addWidget(self.kursasLine, 3, 1)
+        horizontalGroupBox.setLayout(groupBoxLayout)
 
-        self.horizontalGroupBox.setLayout(layout)
-
+        return horizontalGroupBox
 
     def createGridLayout2(self):
         self.horizontalGroupBox = QGroupBox("")
@@ -120,12 +60,6 @@ class MyTableWidget(QDialog):
 
         self.horizontalGroupBox.setLayout(layout)
 
-
-    @pyqtSlot()
-    def on_click(self):
-        print("\n")
-        for currentQTableWidgetItem in self.tableWidget.selectedItems():
-            print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
 
     def closeEvent(self, event):
         reply = QMessageBox.question(self, 'Message',
