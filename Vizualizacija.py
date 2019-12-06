@@ -33,7 +33,7 @@ class MyTableWidget(QDialog):
 
         self.createGridLayout()
         self.layout = QGridLayout(self)
-        self.setLayout(self.layout)
+
         self.layout.addWidget(self.tabs)
 
         self.tab1.layout = QGridLayout(self)
@@ -87,9 +87,6 @@ class MyTableWidget(QDialog):
         self.pybutton = QPushButton('Įrašyti studentą', self)
         self.pybutton.clicked.connect(self.clickMethod)
         self.tab1.layout.addWidget(self.pybutton, 4, 0)
-
-        # Add tabs to widget
-        self.layout.addWidget(self.tabs)
 
         self.setWindowTitle('Fakultetas')
         self.show()
