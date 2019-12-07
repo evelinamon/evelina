@@ -20,10 +20,6 @@ class Fakultetas:
         return self.__adresas
     def priimti_studenta(self, vardas, pavarde, studiju_programa, kursas):
         """Prideda studenta prie fakulteto"""
-        #vardas = input("Iveskite varda: ")
-        #pavarde = input("Ivskite pavarde: ")
-        #studiju_programa = input("Iveskite studiju_programa: ")
-        #kursas = input("Iveskite kursa: ")
         studentas = Studentas(vardas, pavarde, studiju_programa, kursas)
         self.studentai[studentas.gauti_varda()] = studentas
         print("Pridejau studenta. Studentu skaicius {}".format(len(self.studentai)))
@@ -41,16 +37,11 @@ class Fakultetas:
     def gauti_studenta(self):
         vardas = input("Iveskite ieskomo studento varda: ")
         return self.studentai[vardas]
-    def priimti_destytoja(self):
+    def priimti_destytoja(self, vardas, pavarde, pareiga, kada_pradejo):
         """Prideda destytoja prie fakulteto"""
-        vardas = input("Iveskite varda: ")
-        pavarde = input("Iveskite pavarde: ")
-        pareiga = input("Iveskite pareiga: ")
-        kada_pradejo = int(input("Iveskite kada pradejo dirbti: "))
         destytojas = Destytojas(vardas, pavarde, pareiga, kada_pradejo)
         self.destytojai[destytojas.gauti_varda()] = destytojas
         print("Pridejau destytoja. Destytoju skaicius {}".format(len(self.destytojai)))
-        return self
     def gauti_destytojus(self):
         """Fakultetas suteikia destytojui prieiga prie kitu studentu saraso"""
         return self.destytojai.keys()
@@ -80,9 +71,7 @@ class Fakultetas:
         while ciklas == 1:
             print_menu()
             pasirinkimas = input("Iveskite skaiciu [1-6]: ")
-            if pasirinkimas == '2':
-                print (fakultetas.priimti_destytoja())
-            elif pasirinkimas == '3':
+            if pasirinkimas == '3':
                 print (fakultetas.istrinti_studenta())
             elif pasirinkimas == '4':
                 print (fakultetas.istrinti_destytojus())
