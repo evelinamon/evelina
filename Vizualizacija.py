@@ -2,8 +2,8 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget,  QTabWidget, QGridLayout, \
     QMessageBox, QLabel, QLineEdit, QGroupBox, QVBoxLayout, QPushButton
 from Fakultetas import Fakultetas
-from Lentele import Issokantis_langas
-from Lentele2 import Issokantis_langas2
+from StudentuLentele import Issokantis_langas
+from DestytojuLentele import Issokantis_langas2
 
 class Pagrindinis_langas(QWidget):
 
@@ -101,7 +101,6 @@ class Pagrindinis_langas(QWidget):
             event.ignore()
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = Pagrindinis_langas()
-    sys.exit(app.exec_())
+app = QApplication(sys.argv)
+ex = Pagrindinis_langas()
+sys.exit(app.exec_())

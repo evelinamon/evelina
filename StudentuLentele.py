@@ -1,6 +1,4 @@
-import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout
-from Fakultetas import Fakultetas
+from PyQt5.QtWidgets import QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QMessageBox
 
 class Issokantis_langas(QWidget):
 
@@ -35,5 +33,13 @@ class Issokantis_langas(QWidget):
 
     def on_double_clicked(self, row):
         vardas = self.tableWidget.item(row, 0).text()
-        self.fakultetas.istrinti_studenta(vardas)
-        self.tableWidget.removeRow(row)
+        self.istrintiEvent(vardas, row)
+
+
+    def istrintiEvent(self, vardas, row):
+        reply = QMessageBox.question(self, 'Message',
+                                     "Ar tikrai norite istrinti?", QMessageBox.Yes |
+                                     QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            self.fakultetas.istrinti_studenta(vardas)
+            self.tableWidget.removeRow(row)

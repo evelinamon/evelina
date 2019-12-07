@@ -13,6 +13,3 @@ class Fakultetonarys:
     def gauti_pavarde(self):
         """Suteikia fakluteto nariui pavarde"""
         return self.__pavarde
-    def gauti_kolegas(self, fakultetas):
-        """Kiekvienas fakulteto narys turi kolegas, kuriuos gales isvardinti"""
-        raise NotImplementedError("Metodas neparuostas")
