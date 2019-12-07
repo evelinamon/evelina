@@ -26,6 +26,10 @@ class Fakultetas:
     def gauti_studentus(self):
         """Fakultetas suteikia studentui prieiga prie kitu studentu saraso"""
         return self.studentai.keys()
+
+    def gauti_studentu_sarasa(self):
+        return self.studentai
+
     def spausdinti_studentus(self):
         for studentas in self.studentai.values():
             print(studentas.spausdinti())

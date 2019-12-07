@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget,  QTabWidget, QGridLayout, \
     QMessageBox, QLabel, QLineEdit, QGroupBox, QVBoxLayout, QPushButton
 from Fakultetas import Fakultetas
+from Lentele import Issokantis_langas
 
 class Pagrindinis_langas(QWidget):
 
@@ -29,8 +30,11 @@ class Pagrindinis_langas(QWidget):
         horizontalGroupBox = QGroupBox()
         groupBoxLayout = QGridLayout()
         irasyti_studentaButton = QPushButton("Įrašyti studentą")
-
         irasyti_studentaButton.clicked.connect(self.on_clickStudentas)
+        studentu_sarasasButton = QPushButton("Studentų sąrašas")
+        studentu_sarasasButton.clicked.connect(self.on_click_studentu_sarasasButton)
+
+
         groupBoxLayout.setColumnStretch(0, 1)
         groupBoxLayout.setColumnStretch(1, 2)
 
@@ -43,6 +47,7 @@ class Pagrindinis_langas(QWidget):
         groupBoxLayout.addWidget(self.studiju_programaQLineEdit, 2, 1)
         groupBoxLayout.addWidget(self.kursasQLineEdit, 3, 1)
         groupBoxLayout.addWidget(irasyti_studentaButton, 4, 0)
+        groupBoxLayout.addWidget(studentu_sarasasButton, 5, 0)
 
         horizontalGroupBox.setLayout(groupBoxLayout)
 
@@ -80,6 +85,9 @@ class Pagrindinis_langas(QWidget):
                                           self.pavardeDestytojoQLineEdit.text(),
                                           self.pareigaQLineEdit.text(),
                                           self.kada_pradejoQLineEdit.text())
+    def on_click_studentu_sarasasButton(self):
+        self.issokantis_langas = Issokantis_langas(self.fakultetas)
+
 
     def closeEvent(self, event):
         reply = QMessageBox.question(self, 'Message',
