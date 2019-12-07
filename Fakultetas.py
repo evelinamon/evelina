@@ -18,12 +18,12 @@ class Fakultetas:
     def gauti_adresa(self):
         """Suteikia fakultetui adresa"""
         return self.__adresas
-    def priimti_studenta(self):
+    def priimti_studenta(self, vardas, pavarde, studiju_programa, kursas):
         """Prideda studenta prie fakulteto"""
-        vardas = input("Iveskite varda: ")
-        pavarde = input("Ivskite pavarde: ")
-        studiju_programa = input("Iveskite studiju_programa: ")
-        kursas = input("Iveskite kursa: ")
+        #vardas = input("Iveskite varda: ")
+        #pavarde = input("Ivskite pavarde: ")
+        #studiju_programa = input("Iveskite studiju_programa: ")
+        #kursas = input("Iveskite kursa: ")
         studentas = Studentas(vardas, pavarde, studiju_programa, kursas)
         self.studentai[studentas.gauti_varda()] = studentas
         print("Pridejau studenta. Studentu skaicius {}".format(len(self.studentai)))
@@ -80,9 +80,7 @@ class Fakultetas:
         while ciklas == 1:
             print_menu()
             pasirinkimas = input("Iveskite skaiciu [1-6]: ")
-            if pasirinkimas == '1':
-                print (fakultetas.priimti_studenta())
-            elif pasirinkimas == '2':
+            if pasirinkimas == '2':
                 print (fakultetas.priimti_destytoja())
             elif pasirinkimas == '3':
                 print (fakultetas.istrinti_studenta())
