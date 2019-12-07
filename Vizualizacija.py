@@ -29,6 +29,7 @@ class Pagrindinis_langas(QWidget):
         horizontalGroupBox = QGroupBox()
         groupBoxLayout = QGridLayout()
         irasyti_studentaButton = QPushButton("Įrašyti studentą")
+
         irasyti_studentaButton.clicked.connect(self.on_clickStudentas)
         groupBoxLayout.setColumnStretch(0, 1)
         groupBoxLayout.setColumnStretch(1, 2)
