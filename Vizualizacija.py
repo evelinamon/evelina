@@ -85,7 +85,7 @@ class Pagrindinis_langas(QWidget):
                                           self.pareigaQLineEdit.text(),
                                           self.kada_pradejoQLineEdit.text())
     def on_click_studentu_sarasasButton(self):
-        self.issokantis_langas = Issokantis_langas(self.fakultetas)
+        self.issokantis_langas = Issokantis_langas(self.fakultetas.studentai)
 
 
     def closeEvent(self, event):
