@@ -4,11 +4,12 @@ from Fakultetas import Fakultetas
 
 class Issokantis_langas(QWidget):
 
-    def __init__(self, studentai):
+    def __init__(self, studentai, fakultetas):
         super().__init__()
-        self.setGeometry(300, 300, 300, 220)
+        self.setGeometry(300, 300, 425, 400)
         self.setWindowTitle("Studentų sąrašas")
         self.sarasas = studentai.values()
+        self.fakultetas = fakultetas
         self.tableWidget = QTableWidget()
         self.createTable()
         layout = QVBoxLayout()
@@ -18,7 +19,7 @@ class Issokantis_langas(QWidget):
         self.show()
 
     def createTable(self):
-        self.tableWidget.setRowCount(4)
+        self.tableWidget.setRowCount(len(self.sarasas))
         self.tableWidget.setColumnCount(4)
         self.tableWidget.setHorizontalHeaderLabels(["Vardas", "Pavarde", "Studiju programa", "Kursas"])
 
@@ -30,10 +31,9 @@ class Issokantis_langas(QWidget):
             self.tableWidget.setItem(row, column + 2, QTableWidgetItem(studentas.studiju_programa))
             self.tableWidget.setItem(row, column + 3, QTableWidgetItem(studentas.kursas))
             row = row + 1
-
-
         self.tableWidget.cellDoubleClicked.connect(self.on_double_clicked)
-        self.tableWidget.move(0, 0)
 
-    def on_double_clicked(self, a, b):
-        self.tableWidget.removeRow(a)
+    def on_double_clicked(self, row):
+        vardas = self.tableWidget.item(row, 0).text()
+        self.fakultetas.istrinti_studenta(vardas)
+        self.tableWidget.removeRow(row)

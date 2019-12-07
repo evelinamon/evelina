@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QWidget,  QTabWidget, QGridLayout, \
     QMessageBox, QLabel, QLineEdit, QGroupBox, QVBoxLayout, QPushButton
 from Fakultetas import Fakultetas
 from Lentele import Issokantis_langas
+from Lentele2 import Issokantis_langas2
 
 class Pagrindinis_langas(QWidget):
 
@@ -33,10 +34,8 @@ class Pagrindinis_langas(QWidget):
         irasyti_studentaButton.clicked.connect(self.on_clickStudentas)
         studentu_sarasasButton = QPushButton("Studentų sąrašas")
         studentu_sarasasButton.clicked.connect(self.on_click_studentu_sarasasButton)
-
         groupBoxLayout.setColumnStretch(0, 1)
         groupBoxLayout.setColumnStretch(1, 2)
-
         groupBoxLayout.addWidget(QLabel("Vardas"), 0, 0)
         groupBoxLayout.addWidget(QLabel("Pavardė"), 1, 0)
         groupBoxLayout.addWidget(QLabel("Studijų programa"), 2, 0)
@@ -47,16 +46,16 @@ class Pagrindinis_langas(QWidget):
         groupBoxLayout.addWidget(self.kursasQLineEdit, 3, 1)
         groupBoxLayout.addWidget(irasyti_studentaButton, 4, 0)
         groupBoxLayout.addWidget(studentu_sarasasButton, 5, 0)
-
         horizontalGroupBox.setLayout(groupBoxLayout)
-
         return horizontalGroupBox
 
     def createLecturerTab(self):
-        horizontalGroupBox = QGroupBox("")
+        horizontalGroupBox = QGroupBox()
         groupBoxLayout = QGridLayout()
         irasyti_destytojaButton = QPushButton("Įrašyti dėstytoją")
         irasyti_destytojaButton.clicked.connect(self.on_clickDestytojas)
+        destytoju_sarasasButton = QPushButton("Dėstytojų sąrašas")
+        destytoju_sarasasButton.clicked.connect(self.on_click_destytoju_sarasasButton)
         groupBoxLayout.setColumnStretch(0, 1)
         groupBoxLayout.setColumnStretch(1, 2)
         groupBoxLayout.addWidget(QLabel("Vardas"), 0, 0)
@@ -68,6 +67,7 @@ class Pagrindinis_langas(QWidget):
         groupBoxLayout.addWidget(self.pareigaQLineEdit, 2, 1)
         groupBoxLayout.addWidget(self.kada_pradejoQLineEdit, 3, 1)
         groupBoxLayout.addWidget(irasyti_destytojaButton, 4, 0)
+        groupBoxLayout.addWidget(destytoju_sarasasButton, 5, 0)
 
         horizontalGroupBox.setLayout(groupBoxLayout)
 
@@ -85,7 +85,10 @@ class Pagrindinis_langas(QWidget):
                                           self.pareigaQLineEdit.text(),
                                           self.kada_pradejoQLineEdit.text())
     def on_click_studentu_sarasasButton(self):
-        self.issokantis_langas = Issokantis_langas(self.fakultetas.studentai)
+        self.issokantis_langas = Issokantis_langas(self.fakultetas.studentai, self.fakultetas)
+
+    def on_click_destytoju_sarasasButton(self):
+        self.issokantis_langas2 = Issokantis_langas2(self.fakultetas.destytojai, self.fakultetas)
 
 
     def closeEvent(self, event):
