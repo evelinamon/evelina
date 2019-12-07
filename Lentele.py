@@ -24,15 +24,23 @@ class Issokantis_langas(QWidget):
         self.tableWidget.setHorizontalHeaderLabels(["Vardas", "Pavarde", "Studiju programa", "Kursas"])
 
         vardas = ""
-        for kopustas in self.sarasas:
-            vardas = kopustas.gauti_varda()
+        pavarde = ""
+        studiju_programa = ""
+        kursas = ""
+        row = 0
+        column = 0
 
-        self.tableWidget.setItem(0, 0, QTableWidgetItem(vardas))
-        self.tableWidget.setItem(0, 1, QTableWidgetItem())
-        self.tableWidget.setItem(1, 0, QTableWidgetItem())
-        self.tableWidget.setItem(1, 1, QTableWidgetItem())
-        self.tableWidget.setItem(2, 0, QTableWidgetItem())
-        self.tableWidget.setItem(2, 1, QTableWidgetItem())
-        self.tableWidget.setItem(3, 0, QTableWidgetItem())
-        self.tableWidget.setItem(3, 1, QTableWidgetItem())
+        for studentai in self.sarasas:
+            vardas = studentai.gauti_varda()
+            pavarde = studentai.gauti_pavarde()
+            studiju_programa = studentai.studiju_programa
+            kursas = studentai.kursas
+            for elementai in range(4, 0, -1):
+                row = row + 1
+                column = 0
+
+        self.tableWidget.setItem(row, column, QTableWidgetItem(vardas))
+        self.tableWidget.setItem(row, column+1, QTableWidgetItem(pavarde))
+        self.tableWidget.setItem(row, column+2, QTableWidgetItem(studiju_programa))
+        self.tableWidget.setItem(row, column+3, QTableWidgetItem(kursas))
         self.tableWidget.move(0, 0)
