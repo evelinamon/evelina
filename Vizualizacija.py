@@ -34,7 +34,6 @@ class Pagrindinis_langas(QWidget):
         studentu_sarasasButton = QPushButton("Studentų sąrašas")
         studentu_sarasasButton.clicked.connect(self.on_click_studentu_sarasasButton)
 
-
         groupBoxLayout.setColumnStretch(0, 1)
         groupBoxLayout.setColumnStretch(1, 2)
 

@@ -22,7 +22,7 @@ class Issokantis_langas(QWidget):
         self.tableWidget.setRowCount(4)
         self.tableWidget.setColumnCount(4)
         self.tableWidget.setHorizontalHeaderLabels(["Vardas", "Pavarde", "Studiju programa", "Kursas"])
-        self.tableWidget.setItem(0, 0, QTableWidgetItem(self.fakultetas.gauti_studentu_sarasa(self.studentas.vardas)))
+        self.tableWidget.setItem(0, 0, QTableWidgetItem())
         self.tableWidget.setItem(0, 1, QTableWidgetItem())
         self.tableWidget.setItem(1, 0, QTableWidgetItem())
         self.tableWidget.setItem(1, 1, QTableWidgetItem())
