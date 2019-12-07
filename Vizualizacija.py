@@ -18,6 +18,11 @@ class Pagrindinis_langas(QWidget):
     def createStudentTab(self):
         horizontalGroupBox = QGroupBox()
         groupBoxLayout = QGridLayout()
+        self.vardasQLineEdit = QLineEdit()
+        self.pavardeQLineEdit = QLineEdit()
+        self.studiju_programaQLineEdit = QLineEdit()
+        self.kursasQLineEdit = QLineEdit()
+        self.irasyti_studentaButton = QPushButton("Įrašyti studentą")
         groupBoxLayout.setColumnStretch(0, 1)
         groupBoxLayout.setColumnStretch(1, 2)
 
@@ -25,12 +30,12 @@ class Pagrindinis_langas(QWidget):
         groupBoxLayout.addWidget(QLabel("Pavardė"), 1, 0)
         groupBoxLayout.addWidget(QLabel("Studijų programa"), 2, 0)
         groupBoxLayout.addWidget(QLabel("Kursas"), 3, 0)
-        groupBoxLayout.addWidget(QLineEdit(), 0, 1)
-        groupBoxLayout.addWidget(QLineEdit(), 1, 1)
-        groupBoxLayout.addWidget(QLineEdit(), 2, 1)
-        groupBoxLayout.addWidget(QLineEdit(), 3, 1)
-        groupBoxLayout.addWidget(QPushButton("Įrašyti studentą"), 4, 0)
-
+        groupBoxLayout.addWidget(self.vardasQLineEdit, 0, 1)
+        groupBoxLayout.addWidget(self.pavardeQLineEdit, 1, 1)
+        groupBoxLayout.addWidget(self.studiju_programaQLineEdit, 2, 1)
+        groupBoxLayout.addWidget(self.kursasQLineEdit, 3, 1)
+        groupBoxLayout.addWidget(self.irasyti_studentaButton, 4, 0)
+        self.irasyti_studentaButton.clicked.connect(self.on_click())
         horizontalGroupBox.setLayout(groupBoxLayout)
 
         return horizontalGroupBox
@@ -38,6 +43,10 @@ class Pagrindinis_langas(QWidget):
     def createLecturerTab(self):
         horizontalGroupBox = QGroupBox("")
         groupBoxLayout = QGridLayout()
+        self.vardasQLineEdit = QLineEdit()
+        self.pavardeQLineEdit = QLineEdit()
+        self.pareigaQLineEdit = QLineEdit()
+        self.kada_pradejo_dirbtiQLineEdit = QLineEdit()
         groupBoxLayout.setColumnStretch(0, 1)
         groupBoxLayout.setColumnStretch(1, 2)
 
@@ -45,16 +54,18 @@ class Pagrindinis_langas(QWidget):
         groupBoxLayout.addWidget(QLabel("Pavardė"), 1, 0)
         groupBoxLayout.addWidget(QLabel("Pareiga"), 2, 0)
         groupBoxLayout.addWidget(QLabel("Kada pradėjo dirbti"), 3, 0)
-        groupBoxLayout.addWidget(QLineEdit(), 0, 1)
-        groupBoxLayout.addWidget(QLineEdit(), 1, 1)
-        groupBoxLayout.addWidget(QLineEdit(), 2, 1)
-        groupBoxLayout.addWidget(QLineEdit(), 3, 1)
+        groupBoxLayout.addWidget(self.vardasQLineEdit, 0, 1)
+        groupBoxLayout.addWidget(self.pavardeQLineEdit, 1, 1)
+        groupBoxLayout.addWidget(self.pareigaQLineEdit, 2, 1)
+        groupBoxLayout.addWidget(self.kada_pradejo_dirbtiQLineEdit, 3, 1)
         groupBoxLayout.addWidget(QPushButton("Įrašyti dėstytoją"), 4, 0)
 
         horizontalGroupBox.setLayout(groupBoxLayout)
 
         return horizontalGroupBox
 
+    def on_click(self):
+        print("Paspausta")
 
     def closeEvent(self, event):
         reply = QMessageBox.question(self, 'Message',
