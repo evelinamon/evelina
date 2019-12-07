@@ -31,4 +31,9 @@ class Issokantis_langas(QWidget):
             self.tableWidget.setItem(row, column + 3, QTableWidgetItem(studentas.kursas))
             row = row + 1
 
+
+        self.tableWidget.cellDoubleClicked.connect(self.on_double_clicked)
         self.tableWidget.move(0, 0)
+
+    def on_double_clicked(self, a, b):
+        self.tableWidget.removeRow(a)
