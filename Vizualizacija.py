@@ -3,95 +3,104 @@ from PyQt5.QtWidgets import QApplication, QWidget,  QTabWidget, QGridLayout, \
     QMessageBox, QLabel, QLineEdit, QGroupBox, QVBoxLayout, QPushButton
 from Fakultetas import Fakultetas
 from StudentuLentele import Issokantis_langas
-from DestytojuLentele import Issokantis_langas2
+from DestytojuLentele import Issokantislangas2
 
 class Pagrindinis_langas(QWidget):
+    """Pagrindinio lango klase"""
 
     def __init__(self):
+        """Konstruktorius"""
         super().__init__()
         layout = QVBoxLayout()
         tabs = QTabWidget()
-        self.vardasStudentoQLineEdit = QLineEdit()
-        self.pavardeStudentoQLineEdit = QLineEdit()
-        self.studiju_programaQLineEdit = QLineEdit()
-        self.kursasQLineEdit = QLineEdit()
-        self.vardasDestytojoQLineEdit = QLineEdit()
-        self.pavardeDestytojoQLineEdit = QLineEdit()
-        self.pareigaQLineEdit = QLineEdit()
-        self.kada_pradejoQLineEdit = QLineEdit()
-        tabs.addTab(self.createStudentTab(), "Studentas")
-        tabs.addTab(self.createLecturerTab(), "Destytojas")
+        self.vardas_studento_q_line_edit = QLineEdit()
+        self.pavarde_studento_q_line_edit = QLineEdit()
+        self.studiju_programa_q_line_edit = QLineEdit()
+        self.kursas_q_line_edit = QLineEdit()
+        self.vardas_destytojo_q_line_edit = QLineEdit()
+        self.pavarde_destytojo_q_line_edit = QLineEdit()
+        self.pareiga_q_line_edit = QLineEdit()
+        self.kada_pradejo_q_line_edit = QLineEdit()
+        tabs.addTab(self.fill_student_tab(), "Studentas")
+        tabs.addTab(self.fill_lecturer_tab(), "Destytojas")
         layout.addWidget(tabs)
         self.setLayout(layout)
         self.fakultetas = Fakultetas("MIF", "Naugarduko 24")
 
         self.show()
 
-    def createStudentTab(self):
-        horizontalGroupBox = QGroupBox()
-        groupBoxLayout = QGridLayout()
-        irasyti_studentaButton = QPushButton("Įrašyti studentą")
-        irasyti_studentaButton.clicked.connect(self.on_clickStudentas)
-        studentu_sarasasButton = QPushButton("Studentų sąrašas")
-        studentu_sarasasButton.clicked.connect(self.on_click_studentu_sarasasButton)
-        groupBoxLayout.setColumnStretch(0, 1)
-        groupBoxLayout.setColumnStretch(1, 2)
-        groupBoxLayout.addWidget(QLabel("Vardas"), 0, 0)
-        groupBoxLayout.addWidget(QLabel("Pavardė"), 1, 0)
-        groupBoxLayout.addWidget(QLabel("Studijų programa"), 2, 0)
-        groupBoxLayout.addWidget(QLabel("Kursas"), 3, 0)
-        groupBoxLayout.addWidget(self.vardasStudentoQLineEdit, 0, 1)
-        groupBoxLayout.addWidget(self.pavardeStudentoQLineEdit, 1, 1)
-        groupBoxLayout.addWidget(self.studiju_programaQLineEdit, 2, 1)
-        groupBoxLayout.addWidget(self.kursasQLineEdit, 3, 1)
-        groupBoxLayout.addWidget(irasyti_studentaButton, 4, 0)
-        groupBoxLayout.addWidget(studentu_sarasasButton, 5, 0)
-        horizontalGroupBox.setLayout(groupBoxLayout)
-        return horizontalGroupBox
+    def fill_student_tab(self):
+        """Uzpildo skirtuka"""
+        horizontal_group_box = QGroupBox()
+        group_box_layout = QGridLayout()
+        irasyti_studenta_button = QPushButton("Įrašyti studentą")
+        irasyti_studenta_button.clicked.connect(self.on_click_studentas)
+        studentu_sarasas_button = QPushButton("Studentų sąrašas")
+        studentu_sarasas_button.clicked.connect(self.on_click_studentu_sarasas_button)
+        group_box_layout.setColumnStretch(0, 1)
+        group_box_layout.setColumnStretch(1, 2)
+        group_box_layout.addWidget(QLabel("Vardas"), 0, 0)
+        group_box_layout.addWidget(QLabel("Pavardė"), 1, 0)
+        group_box_layout.addWidget(QLabel("Studijų programa"), 2, 0)
+        group_box_layout.addWidget(QLabel("Kursas"), 3, 0)
+        group_box_layout.addWidget(self.vardas_studento_q_line_edit, 0, 1)
+        group_box_layout.addWidget(self.pavarde_studento_q_line_edit, 1, 1)
+        group_box_layout.addWidget(self.studiju_programa_q_line_edit, 2, 1)
+        group_box_layout.addWidget(self.kursas_q_line_edit, 3, 1)
+        group_box_layout.addWidget(irasyti_studenta_button, 4, 0)
+        group_box_layout.addWidget(studentu_sarasas_button, 5, 0)
+        horizontal_group_box.setLayout(group_box_layout)
+        return horizontal_group_box
 
-    def createLecturerTab(self):
-        horizontalGroupBox = QGroupBox()
-        groupBoxLayout = QGridLayout()
-        irasyti_destytojaButton = QPushButton("Įrašyti dėstytoją")
-        irasyti_destytojaButton.clicked.connect(self.on_clickDestytojas)
-        destytoju_sarasasButton = QPushButton("Dėstytojų sąrašas")
-        destytoju_sarasasButton.clicked.connect(self.on_click_destytoju_sarasasButton)
-        groupBoxLayout.setColumnStretch(0, 1)
-        groupBoxLayout.setColumnStretch(1, 2)
-        groupBoxLayout.addWidget(QLabel("Vardas"), 0, 0)
-        groupBoxLayout.addWidget(QLabel("Pavardė"), 1, 0)
-        groupBoxLayout.addWidget(QLabel("Pareiga"), 2, 0)
-        groupBoxLayout.addWidget(QLabel("Kada pradėjo dirbti"), 3, 0)
-        groupBoxLayout.addWidget(self.vardasDestytojoQLineEdit, 0, 1)
-        groupBoxLayout.addWidget(self.pavardeDestytojoQLineEdit, 1, 1)
-        groupBoxLayout.addWidget(self.pareigaQLineEdit, 2, 1)
-        groupBoxLayout.addWidget(self.kada_pradejoQLineEdit, 3, 1)
-        groupBoxLayout.addWidget(irasyti_destytojaButton, 4, 0)
-        groupBoxLayout.addWidget(destytoju_sarasasButton, 5, 0)
+    def fill_lecturer_tab(self):
+        """Uzpildo skituka"""
+        horizontal_group_box = QGroupBox()
+        group_box_layout = QGridLayout()
+        irasyti_destytoja_button = QPushButton("Įrašyti dėstytoją")
+        irasyti_destytoja_button.clicked.connect(self.on_click_destytojas)
+        destytoju_sarasas_button = QPushButton("Dėstytojų sąrašas")
+        destytoju_sarasas_button.clicked.connect(self.on_click_destytoju_sarasas_button)
+        group_box_layout.setColumnStretch(0, 1)
+        group_box_layout.setColumnStretch(1, 2)
+        group_box_layout.addWidget(QLabel("Vardas"), 0, 0)
+        group_box_layout.addWidget(QLabel("Pavardė"), 1, 0)
+        group_box_layout.addWidget(QLabel("Pareiga"), 2, 0)
+        group_box_layout.addWidget(QLabel("Kada pradėjo dirbti"), 3, 0)
+        group_box_layout.addWidget(self.vardas_destytojo_q_line_edit, 0, 1)
+        group_box_layout.addWidget(self.pavarde_destytojo_q_line_edit, 1, 1)
+        group_box_layout.addWidget(self.pareiga_q_line_edit, 2, 1)
+        group_box_layout.addWidget(self.kada_pradejo_q_line_edit, 3, 1)
+        group_box_layout.addWidget(irasyti_destytoja_button, 4, 0)
+        group_box_layout.addWidget(destytoju_sarasas_button, 5, 0)
 
-        horizontalGroupBox.setLayout(groupBoxLayout)
+        horizontal_group_box.setLayout(group_box_layout)
 
-        return horizontalGroupBox
+        return horizontal_group_box
 
-    def on_clickStudentas(self):
-        self.fakultetas.priimti_studenta(self.vardasStudentoQLineEdit.text(),
-                                         self.pavardeStudentoQLineEdit.text(),
-                                         self.studiju_programaQLineEdit.text(),
-                                         self.kursasQLineEdit.text())
+    def on_click_studentas(self):
+        """Mygtuko paspaudimas priima studenta"""
+        self.fakultetas.priimti_studenta(self.vardas_studento_q_line_edit.text(),
+                                         self.pavarde_studento_q_line_edit.text(),
+                                         self.studiju_programa_q_line_edit.text(),
+                                         self.kursas_q_line_edit.text())
 
-    def on_clickDestytojas(self):
-        self.fakultetas.priimti_destytoja(self.vardasDestytojoQLineEdit.text(),
-                                          self.pavardeDestytojoQLineEdit.text(),
-                                          self.pareigaQLineEdit.text(),
-                                          self.kada_pradejoQLineEdit.text())
-    def on_click_studentu_sarasasButton(self):
+    def on_click_destytojas(self):
+        """Mygtuko paspaudimas priima destytoja"""
+        self.fakultetas.priimti_destytoja(self.vardas_destytojo_q_line_edit.text(),
+                                          self.pavarde_destytojo_q_line_edit.text(),
+                                          self.pareiga_q_line_edit.text(),
+                                          self.kada_pradejo_q_line_edit.text())
+
+    def on_click_studentu_sarasas_button(self):
+        """Atidaro Issokanti langa"""
         self.issokantis_langas = Issokantis_langas(self.fakultetas.studentai, self.fakultetas)
 
-    def on_click_destytoju_sarasasButton(self):
-        self.issokantis_langas2 = Issokantis_langas2(self.fakultetas.destytojai, self.fakultetas)
-
+    def on_click_destytoju_sarasas_button(self):
+        """Atidaro Issokantis langas 2"""
+        self.issokantis_langas2 = Issokantislangas2(self.fakultetas.destytojai, self.fakultetas)
 
     def closeEvent(self, event):
+        """Informacine zinute"""
         reply = QMessageBox.question(self, 'Message',
                                      "Are you sure to quit?", QMessageBox.Yes |
                                      QMessageBox.No, QMessageBox.No)
