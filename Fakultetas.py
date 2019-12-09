@@ -53,4 +53,5 @@ class Fakultetas:
         """Suma visu destytoju destomu valandu"""
         suma = 0
         for destytojas in self.destytojai:
-            suma = suma + int(kiek_valandu_desto)
+            suma = suma + kiek_valandu_desto
+        return suma

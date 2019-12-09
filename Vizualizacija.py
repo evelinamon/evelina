@@ -108,8 +108,7 @@ class Pagrindinis_langas(QWidget):
         self.issokantis_langas2 = Issokantislangas2(self.fakultetas.destytojai, self.fakultetas)
 
     def on_click_valandu_kiekis_button(self):
-        """Kiek valandu desto visi sarase esantys destytojai"""
-        print(Issokantislangas2(int(self.fakultetas.desto_valandu(self.tablewidget.item(4, 0).text()))))
+        print(Issokantislangas2(self.fakultetas.desto_valandu(self.tablewidget.item(4, 0).text())))
 
 
     def closeEvent(self, event):
