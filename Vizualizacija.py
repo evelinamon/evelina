@@ -96,7 +96,8 @@ class Pagrindinis_langas(QWidget):
         self.fakultetas.priimti_destytoja(self.vardas_destytojo_q_line_edit.text(),
                                           self.pavarde_destytojo_q_line_edit.text(),
                                           self.pareiga_q_line_edit.text(),
-                                          self.kada_pradejo_q_line_edit.text())
+                                          self.kada_pradejo_q_line_edit.text(),
+                                          self.kiek_laiko_desto_q_line_edit.text())
 
     def on_click_studentu_sarasas_button(self):
         """Atidaro Issokanti langa"""
@@ -108,6 +109,7 @@ class Pagrindinis_langas(QWidget):
 
     def on_click_valandu_kiekis_button(self):
         """Kiek valandu desto visi sarase esantys destytojai"""
+        print(Issokantislangas2(int(self.fakultetas.desto_valandu(self.tablewidget.item(4, 0).text()))))
 
 
     def closeEvent(self, event):
