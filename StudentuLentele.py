@@ -2,12 +2,12 @@ from PyQt5.QtWidgets import QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout
 
 class Issokantislangas(QWidget):
 
-    def __init__(self, studentai, fakultetas):
+    def __init__(self, fakultetas):
         """Konstruktorius"""
         super().__init__()
         self.setGeometry(300, 300, 425, 400)
         self.setWindowTitle("Studentų sąrašas")
-        self.sarasas = studentai.values()
+        self.sarasas = fakultetas.studentai.values()
         self.fakultetas = fakultetas
         self.tableWidget = QTableWidget()
         self.fillTable()
