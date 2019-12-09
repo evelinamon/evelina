@@ -55,8 +55,3 @@ class Fakultetas:
         for destytojas in self.destytojai.values():
             suma = suma + int(destytojas.kiek_valandu_desto)
         return suma
-
-    def kiek_destytoju(self):
-        """Suskaiciuoja destytojus"""
-        kiek = len(self.destytojai)
-        return kiek

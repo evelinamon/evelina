@@ -109,10 +109,7 @@ class Pagrindinis_langas(QWidget):
 
     def on_click_valandu_kiekis_button(self):
         """Mygtuko paspaudimas apskaiciuoja destytoju destomu valandu skaiciu"""
-        print(self.fakultetas.desto_valandu())
-        #QMessageBox.about(self, "Kiek valandu desto", )
-
-
+        QMessageBox.about(self, "Kiek valandu desto", "Desto: {}".format(str(self.fakultetas.desto_valandu())))
 
     def closeEvent(self, event):
         """Informacine zinute"""
