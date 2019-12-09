@@ -21,8 +21,8 @@ class Issokantislangas2(QWidget):
     def filltable(self):
         """Uzpildo lentele"""
         self.tablewidget.setRowCount(len(self.sarasas))
-        self.tablewidget.setColumnCount(4)
-        self.tablewidget.setHorizontalHeaderLabels(["Vardas", "Pavarde", "Pareiga", "Nuo kada dirba"])
+        self.tablewidget.setColumnCount(5)
+        self.tablewidget.setHorizontalHeaderLabels(["Vardas", "Pavarde", "Pareiga", "Nuo kada dirba", "Kiek valandu"])
 
         row = 0
         for destytojas in self.sarasas:
@@ -31,6 +31,7 @@ class Issokantislangas2(QWidget):
             self.tablewidget.setItem(row, column + 1, QTableWidgetItem(destytojas.gauti_pavarde()))
             self.tablewidget.setItem(row, column + 2, QTableWidgetItem(destytojas.pareiga))
             self.tablewidget.setItem(row, column + 3, QTableWidgetItem(destytojas.kada_pradejo))
+            self.tablewidget.setItem(row, column + 4, QTableWidgetItem(destytojas.kiek_valandu_desto))
             row = row + 1
         self.tablewidget.cellDoubleClicked.connect(self.on_double_clicked)
 

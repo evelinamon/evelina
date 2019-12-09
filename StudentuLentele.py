@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QMessageBox
 
-class Issokantis_langas(QWidget):
+class Issokantislangas(QWidget):
 
     def __init__(self, studentai, fakultetas):
         """Konstruktorius"""

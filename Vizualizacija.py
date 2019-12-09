@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget,  QTabWidget, QGridLayout, \
     QMessageBox, QLabel, QLineEdit, QGroupBox, QVBoxLayout, QPushButton
 from Fakultetas import Fakultetas
-from StudentuLentele import Issokantis_langas
+from StudentuLentele import Issokantislangas
 from DestytojuLentele import Issokantislangas2
 
 class Pagrindinis_langas(QWidget):
@@ -11,6 +11,7 @@ class Pagrindinis_langas(QWidget):
     def __init__(self):
         """Konstruktorius"""
         super().__init__()
+        self.setWindowTitle("Fakultetas")
         layout = QVBoxLayout()
         tabs = QTabWidget()
         self.vardas_studento_q_line_edit = QLineEdit()
@@ -21,6 +22,7 @@ class Pagrindinis_langas(QWidget):
         self.pavarde_destytojo_q_line_edit = QLineEdit()
         self.pareiga_q_line_edit = QLineEdit()
         self.kada_pradejo_q_line_edit = QLineEdit()
+        self.kiek_laiko_desto_q_line_edit = QLineEdit()
         tabs.addTab(self.fill_student_tab(), "Studentas")
         tabs.addTab(self.fill_lecturer_tab(), "Destytojas")
         layout.addWidget(tabs)
@@ -60,18 +62,23 @@ class Pagrindinis_langas(QWidget):
         irasyti_destytoja_button.clicked.connect(self.on_click_destytojas)
         destytoju_sarasas_button = QPushButton("Dėstytojų sąrašas")
         destytoju_sarasas_button.clicked.connect(self.on_click_destytoju_sarasas_button)
+        valandu_kiekis_button = QPushButton("Valandu kiekis")
+        valandu_kiekis_button.clicked.connect(self.on_click_valandu_kiekis_button)
         group_box_layout.setColumnStretch(0, 1)
         group_box_layout.setColumnStretch(1, 2)
         group_box_layout.addWidget(QLabel("Vardas"), 0, 0)
         group_box_layout.addWidget(QLabel("Pavardė"), 1, 0)
         group_box_layout.addWidget(QLabel("Pareiga"), 2, 0)
         group_box_layout.addWidget(QLabel("Kada pradėjo dirbti"), 3, 0)
+        group_box_layout.addWidget(QLabel("Kiek valandu desto"), 4, 0)
         group_box_layout.addWidget(self.vardas_destytojo_q_line_edit, 0, 1)
         group_box_layout.addWidget(self.pavarde_destytojo_q_line_edit, 1, 1)
         group_box_layout.addWidget(self.pareiga_q_line_edit, 2, 1)
         group_box_layout.addWidget(self.kada_pradejo_q_line_edit, 3, 1)
-        group_box_layout.addWidget(irasyti_destytoja_button, 4, 0)
-        group_box_layout.addWidget(destytoju_sarasas_button, 5, 0)
+        group_box_layout.addWidget(self.kiek_laiko_desto_q_line_edit, 4, 1)
+        group_box_layout.addWidget(irasyti_destytoja_button, 5, 0)
+        group_box_layout.addWidget(destytoju_sarasas_button, 6, 0)
+        group_box_layout.addWidget(valandu_kiekis_button, 7, 0)
 
         horizontal_group_box.setLayout(group_box_layout)
 
@@ -93,11 +100,15 @@ class Pagrindinis_langas(QWidget):
 
     def on_click_studentu_sarasas_button(self):
         """Atidaro Issokanti langa"""
-        self.issokantis_langas = Issokantis_langas(self.fakultetas.studentai, self.fakultetas)
+        self.issokantis_langas = Issokantislangas(self.fakultetas.studentai, self.fakultetas)
 
     def on_click_destytoju_sarasas_button(self):
         """Atidaro Issokantis langas 2"""
         self.issokantis_langas2 = Issokantislangas2(self.fakultetas.destytojai, self.fakultetas)
+
+    def on_click_valandu_kiekis_button(self):
+        """Kiek valandu desto visi sarase esantys destytojai"""
+
 
     def closeEvent(self, event):
         """Informacine zinute"""
