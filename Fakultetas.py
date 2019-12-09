@@ -49,9 +49,14 @@ class Fakultetas:
         """Istrina destytojus"""
         del self.destytojai[vardas]
 
-    def desto_valandu(self, kiek_valandu_desto):
+    def desto_valandu(self):
         """Suma visu destytoju destomu valandu"""
         suma = 0
-        for destytojas in self.destytojai:
-            suma = suma + kiek_valandu_desto
+        for destytojas in self.destytojai.values():
+            suma = suma + int(destytojas.kiek_valandu_desto)
         return suma
+
+    def kiek_destytoju(self):
+        """Suskaiciuoja destytojus"""
+        kiek = len(self.destytojai)
+        return kiek

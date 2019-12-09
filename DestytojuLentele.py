@@ -44,7 +44,7 @@ class Issokantislangas2(QWidget):
         """Informacine zinute"""
         reply = QMessageBox.question(self, 'Message',
                                      "Ar tikrai norite istrinti?", QMessageBox.Yes |
-                                     QMessageBox.No, QMessageBox.No)
+                                     QMessageBox.No)
         if reply == QMessageBox.Yes:
             self.fakultetas.istrinti_destytojus(vardas)
             self.tablewidget.removeRow(row)

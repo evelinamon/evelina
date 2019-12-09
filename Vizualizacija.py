@@ -108,14 +108,17 @@ class Pagrindinis_langas(QWidget):
         self.issokantis_langas2 = Issokantislangas2(self.fakultetas.destytojai, self.fakultetas)
 
     def on_click_valandu_kiekis_button(self):
-        print(Issokantislangas2(self.fakultetas.desto_valandu(self.tablewidget.item(4, 0).text())))
+        """Mygtuko paspaudimas apskaiciuoja destytoju destomu valandu skaiciu"""
+        print(self.fakultetas.desto_valandu())
+        #QMessageBox.about(self, "Kiek valandu desto", )
+
 
 
     def closeEvent(self, event):
         """Informacine zinute"""
         reply = QMessageBox.question(self, 'Message',
                                      "Are you sure to quit?", QMessageBox.Yes |
-                                     QMessageBox.No, QMessageBox.No)
+                                     QMessageBox.No)
         if reply == QMessageBox.Yes:
             event.accept()
         else:
